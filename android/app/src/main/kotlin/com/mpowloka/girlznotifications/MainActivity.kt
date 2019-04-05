@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import androidx.work.workDataOf
 import io.flutter.app.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugins.GeneratedPluginRegistrant
@@ -31,10 +32,13 @@ class MainActivity : FlutterActivity() {
 
                 "startReminders" -> {
 
+                    val inputData = workDataOf(NotificationWorker.TARGET_CHANNEL_ID_KEY to CHANNEL_ID)
+
                     WorkManager.getInstance().enqueueUniquePeriodicWork(
                             WORKER_NAME,
                             ExistingPeriodicWorkPolicy.REPLACE,
                             PeriodicWorkRequestBuilder<NotificationWorker>(12, TimeUnit.HOURS)
+                                    .setInputData(inputData)
                                     .build()
                     )
 
