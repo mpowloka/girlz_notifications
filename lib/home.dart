@@ -19,13 +19,13 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
-              child: Text("Start reminders!"),
+              child: Text("Włącz powiadomienia"),
               onPressed: () {
                 notificationsChannel.invokeMethod("startReminders");
               },
             ),
             RaisedButton(
-              child: Text("Stop reminders!"),
+              child: Text("Wyłącz powiaomienia"),
               onPressed: () {
                 notificationsChannel.invokeMethod("stopReminders");
               },
