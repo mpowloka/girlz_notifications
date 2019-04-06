@@ -4,10 +4,8 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 import android.os.Bundle
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.workDataOf
+import android.widget.Toast
+import androidx.work.*
 import io.flutter.app.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugins.GeneratedPluginRegistrant
@@ -26,29 +24,32 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun observeFlutterChannel() {
-        MethodChannel(flutterView, FLUTTER_NOTIFICATIONS_CHANNEL).setMethodCallHandler { call, result ->
+        MethodChannel(flutterView, FLUTTER_NOTIFICATIONS_CHANNEL).setMethodCallHandler { call, _ ->
 
             when (call.method) {
 
                 "startReminders" -> {
 
+                    WorkManager.getInstance().cancelAllWork()
+
                     val inputData = workDataOf(NotificationWorker.TARGET_CHANNEL_ID_KEY to CHANNEL_ID)
 
-                    WorkManager.getInstance().enqueueUniquePeriodicWork(
-                            WORKER_NAME,
-                            ExistingPeriodicWorkPolicy.REPLACE,
-                            PeriodicWorkRequestBuilder<NotificationWorker>(12, TimeUnit.HOURS)
+                    WorkManager.getInstance().enqueueUniqueWork(
+                            SCHEDULE_NOTIFICATIONS_WORKER_NAME,
+                            ExistingWorkPolicy.REPLACE,
+                            OneTimeWorkRequestBuilder<ScheduleNotificationsWorker>()
+                                    .setInitialDelay(12, TimeUnit.HOURS)
                                     .setInputData(inputData)
                                     .build()
                     )
 
-                    println("Worker enqueued!")
+                    Toast.makeText(this, "Co 12 godzin coś się będzie działo...", Toast.LENGTH_SHORT).show()
                 }
 
                 "stopReminders" -> {
                     WorkManager.getInstance().cancelAllWork()
 
-                    println("All workers stopped!")
+                    Toast.makeText(this, "Mission aborted.", Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -71,13 +72,17 @@ class MainActivity : FlutterActivity() {
 
     companion object {
 
+        const val NOTIFICATIONS_WORKER_NAME = "NOTIFICATIONS_WORKER_NAME"
+
+
+
         private const val CHANNEL_ID = "42"
+
+        private const val SCHEDULE_NOTIFICATIONS_WORKER_NAME = "SCHEDULE_NOTIFICATIONS_WORKER_NAME"
 
         private const val FLUTTER_NOTIFICATIONS_CHANNEL = "notifications"
 
         private const val ANDROID_NOTIFICATIONS_CHANNEL_NAME = "Gentle reminders"
-
-        private const val WORKER_NAME = "WORKER_NAME"
     }
 
 }

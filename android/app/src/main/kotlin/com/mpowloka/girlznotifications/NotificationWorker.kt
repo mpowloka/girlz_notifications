@@ -34,7 +34,7 @@ class NotificationWorker(
 
         private const val NOTIFICATION_CONTENT_TITLE = "Kasia..."
 
-        private val AVAILABLE_CONTENT_TEXTS = listOf<String>(
+        private val AVAILABLE_CONTENT_TEXTS = listOf(
                 "Wyglądasz doooooobrzeeee!",
                 "LUBIĘ CIĘ!",
                 "Paweł nie ma racji.",
