@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Gentle reminder"),
+        title: Text("Que"),
       ),
       body: Center(
         child: Column(
@@ -19,13 +19,13 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
-              child: Text("Włącz powiadomienia"),
+              child: Text("Initialize"),
               onPressed: () {
                 notificationsChannel.invokeMethod("startReminders");
               },
             ),
             RaisedButton(
-              child: Text("Wyłącz powiaomienia"),
+              child: Text("Disable"),
               onPressed: () {
                 notificationsChannel.invokeMethod("stopReminders");
               },

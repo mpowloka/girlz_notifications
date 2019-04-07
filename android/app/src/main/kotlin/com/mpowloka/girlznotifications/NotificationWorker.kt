@@ -32,25 +32,13 @@ class NotificationWorker(
 
     companion object {
 
-        private const val NOTIFICATION_CONTENT_TITLE = "Kasia..."
+        private const val NOTIFICATION_CONTENT_TITLE = "Que?"
 
         private val AVAILABLE_CONTENT_TEXTS = listOf(
-                "Wyglądasz doooooobrzeeee!",
-                "Lubię Cię!",
-                "Paweł nie ma racji!",
-                "Miłego dnia!",
-                "♫♫♫ Ty jesteś RUDA! ♫♫♫",
-                "No cześć, Maleńka...",
-                "Robisz coś wieczorem?",
-                "Czy sprawdziłaś już dzisiejszy status WorldWarBot 2020?",
-                "Cieszę się, że Cię poznałem!",
-                "Zjedz dzisiaj ananasa!",
-                "Uśmiechnij się!",
-                "Masz cudowne oczy!",
-                "Uśmiechnij się jak najszerzej!",
-                "Nigdy nie miałem lepszej kochanki od Ciebie!",
-                "Przygodzie powiedziałem, że poznaliśmy się na Woodstocku",
-                "Paulina Pawlak myśli, że spadłaś na mnie z okna"
+                "Co?",
+                "Shcho shcho?",
+                "What?",
+                "Kife? (I cannot find how to spell that, lol)"
         )
 
         const val TARGET_CHANNEL_ID_KEY = "TARGET_CHANNEL_ID_KEY"

@@ -43,7 +43,7 @@ class MainActivity : FlutterActivity() {
                                     .build()
                     )
 
-                    Toast.makeText(this, "Co 12 godzin coś się będzie działo...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Things will happen now...", Toast.LENGTH_SHORT).show()
                 }
 
                 "stopReminders" -> {
